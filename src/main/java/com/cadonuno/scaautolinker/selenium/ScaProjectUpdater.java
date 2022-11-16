@@ -83,6 +83,8 @@ public class ScaProjectUpdater {
             }
         } catch (TimeoutException e) {
             if (currentAttempt < MAX_ATTEMPTS_PER_PROJECT) {
+                Logger.debug("Rerunning");
+                Logger.debug(e::printStackTrace);
                 linkToApplicationInternal(instance, project, applicationToLinkTo, defaultBranch, ++currentAttempt);
             } else {
                 throw new RuntimeException(e);
